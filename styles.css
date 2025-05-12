@@ -13,7 +13,7 @@ html, body {
     justify-content: center;
     align-items: center;
     background-color: #193c4b;
-    background-size: cover;
+    background-size: 105%;
     transition: opacity 2s ease;
     width: 100%;
     overflow: hidden; 
@@ -210,14 +210,6 @@ body {
     }
 }
 
-@keyframes startPageAnimations {
-    0%{
-        opacity: 1;
-        transform: rotate(20deg);
-    } 100% {
-        opacity: 0;
-    }
-}
 
 @media (max-width: 767px) {
     #intro {
