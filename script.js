@@ -1,20 +1,25 @@
 let errorCount = 0;
 let sound = document.getElementById('music_1');
 let button = document.getElementById('soundOn')
+let clickSFX = document.getElementById('click_sfx');
 sound.play();
 
 button.addEventListener("click", event=>{
+    clickSFX.play();
     if(sound.paused){
         sound.play();
-        button.src = "Embeds/sound_on.png";
+        button.src = "Assets/sound_on.png";
     }
     else if(sound.play()){
         sound.pause();
-        button.src = "Embeds/sound_off.png";
+        button.src = "Assets/sound_off.png";
     }
 });
 
-
+let x = document.querySelector('body');
+x.addEventListener("click", event=>{
+    clickSFX.play();
+});
 
 function formValidation(){
     event.preventDefault();

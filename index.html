@@ -12,27 +12,33 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <img src="Embeds/sound_on.png" id="soundOn">
-        <audio id="music_1" autoplay loop>
-            <source src="Embeds\Waltzing in the Rain.mp3">
-        </audio>
-        <p id="intro">WELCOME...</p>
-        
-        <form id="userForm" onsubmit="return formValidation()">
-            <label style="color: #bec5ae ; text-shadow: 1px 1.5px #4e6a76;"> Username: <input type="text" id="username"></label><br><br>
-            <label style="color: #bec5ae; text-shadow: 1px 1.5px #4e6a76;">Password: <input type="password" id="password"></label>
-            <br><br>
-            <input type="submit" id="submit">
+        <div class="scrollable-container">
+            <img src="Assets/sound_on.png" id="soundOn">
+
+            <audio id="music_1" autoplay loop>
+                <source src="Assets\Waltzing in the Rain.mp3">
+            </audio>
+
+            <audio id="click_sfx">
+                <source src="Assets/click-sfx.wav.wav">
+            </audio>
+
+            <p id="intro">WELCOME.</p>
             
-        </form>
+            <form id="userForm" onsubmit="return formValidation()">
+                <label style="color: #bec5ae ; text-shadow: 1px 1.5px #4e6a76;"> Username: <input type="text" id="username"></label><br><br>
+                <label style="color: #bec5ae; text-shadow: 1px 1.5px #4e6a76;">Password: <input type="password" id="password"></label>
+                <br><br>
+                <input type="submit" id="submit">
+            </form>
 
-        <p id="userError"></p>
-        <p id="passError"></p>
-        <p id="hint"></p>
+            <p id="userError"></p>
+            <p id="passError"></p>
+            <p id="hint"></p>
 
-        <img src="Embeds/leaves_2.png" class="shrub left">
-        <img src="Embeds/leaves_2.png" class="shrub right">
-        
+            <img src="Assets/leaves_2.png" class="shrub left">
+            <img src="Assets/leaves_2.png" class="shrub right">
+        </div>
         
     </body>
     <script src="script.js"></script>

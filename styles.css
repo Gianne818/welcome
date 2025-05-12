@@ -11,11 +11,21 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("Embeds/magic_forest2.jpg");
+    background-image: url("Assets/magic_forest2.jpg");
     background-size: cover;
-    background-position: center;;
+    background-position: center;
 }
 
+.scrollable-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; 
+    max-height: 100vh; 
+    width: 100%;
+    padding: 20px; 
+}
 
 #intro {
     font-size: 100px;
@@ -73,6 +83,7 @@ body {
 #submit:hover, #username:hover, #password:hover{
     background-color: #2e777f;
     transition: 300ms ease;
+    scale: 1.03;
 }
 
 #submit:hover{
@@ -81,6 +92,7 @@ body {
 }
 
  #username, #password {
+    transition: 300ms ease;
     font-family: "Tagesschrift", system-ui;
     color: #4e6a76;
     background-color: #98d0b5;
