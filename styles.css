@@ -8,7 +8,7 @@ html, body {
     position: absolute;
     display: flex;
     min-height: 102vh;
-    min-width: 102vw;
+    min-width: 105vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
