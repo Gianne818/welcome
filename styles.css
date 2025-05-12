@@ -16,6 +16,7 @@ html, body {
     background-size: cover;
     transition: opacity 2s ease;
     width: 100%;
+    overflow: hidden;
 }
 
 #start_button {
