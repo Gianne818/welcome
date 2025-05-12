@@ -163,7 +163,7 @@ body {
         height: 250px;
     }
     #username, #password, #submit, #userError, #passError, #hint {
-        scale: 1.5;
+        scale: 1.2;
     }
 }
 
