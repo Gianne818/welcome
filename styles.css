@@ -3,6 +3,9 @@ html, body {
     padding: 0;
 }
 
+* {
+    overflow: hidden;
+}
 
 #start_page{
     position: absolute;
@@ -63,6 +66,7 @@ body {
 }
 
 .scrollable-container {
+    position: absolute;
     transition: 300ms ease;
     display: flex;
     flex-direction: column;
