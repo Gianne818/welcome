@@ -45,7 +45,6 @@ html, body {
 }
 
 .scrollable-container {
-    /* position: absolute; */
     transition: 300ms ease;
     display: flex;
     flex-direction: column;
