@@ -67,6 +67,7 @@ body {
     display: flex;
     min-height: 100dvh;
     max-width: 100dvw;
+    max-height: 100dvh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
