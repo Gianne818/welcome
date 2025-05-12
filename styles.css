@@ -1,14 +1,13 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 
 #start_page{
     position: absolute;
     display: flex;
-    min-height: 102%;
+    min-height: 105%;
     min-width: 100vw;
     flex-direction: column;
     justify-content: center;
@@ -64,6 +63,7 @@ body {
 }
 
 .scrollable-container {
+    transition: 300ms ease;
     display: flex;
     flex-direction: column;
     justify-content: center;
