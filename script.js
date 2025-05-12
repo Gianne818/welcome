@@ -14,6 +14,7 @@ startButton.addEventListener("click", function() {
     setTimeout(() => {
         startPage.style.display = 'none';
         loginPage.style.opacity = '1';
+        loginpage.style.display: 'flex';
     }, 500);
 });
 
