@@ -7,7 +7,7 @@ html, body {
 #start_page{
     position: absolute;
     display: flex;
-    min-height: 105%;
+    min-height: 100vw;
     min-width: 100vw;
     flex-direction: column;
     justify-content: center;
@@ -58,8 +58,7 @@ html, body {
     overflow: hidden;
 }
 
-body {
-    animation:  float 3s ease-in-out infinite;  
+body {  
     font-family: "Tagesschrift", system-ui;
     overflow: hidden;
     display: flex;
@@ -71,17 +70,19 @@ body {
     background-image: url("Assets/magic_forest2.jpg");
     background-size: cover;
     background-position: center; 
-    
+    overflow: hidden;
     
 }
 
 #intro {
+    animation:  float 3s ease-in-out infinite;
     font-size: 100px;
     text-shadow: 2px 2px #4e6a76;
     color: #bec5ae;
 }
 
 #userError {
+    animation:  float 3s ease-in-out infinite;
     opacity: 0;
     display: block;
     transition: opacity 0.3s ease;
@@ -93,6 +94,7 @@ body {
 }
 
 #passError {
+    animation:  float 3s ease-in-out infinite;
     opacity: 0;
     display: block;
     transition: opacity 0.3s ease;
@@ -104,6 +106,7 @@ body {
 }
 
 #hint {
+    animation:  float 3s ease-in-out infinite;
     opacity: 0;
     display: block;
     transition: opacity 0.2s ease;
@@ -115,6 +118,7 @@ body {
 }
 
 #submit {
+    animation:  float 3s ease-in-out infinite;
     font-family: "Tagesschrift", system-ui;
     transition: 300ms ease;
     color: #358c95;
@@ -140,6 +144,7 @@ body {
 }
 
  #username, #password {
+    animation:  float 3s ease-in-out infinite;
     transition: 300ms ease;
     font-family: "Tagesschrift", system-ui;
     color: #4e6a76;
@@ -150,7 +155,7 @@ body {
 }
 
 .shrub {
-    
+    animation:  float 3s ease-in-out infinite;
     position: fixed;
     width: auto;
     height:400px;
@@ -171,6 +176,7 @@ body {
 }
 
 #soundOn{
+    animation:  float 3s ease-in-out infinite;
     transition: 300ms ease;
     width: auto;
     height: 100px;
