@@ -156,7 +156,7 @@ body {
 
 @media (max-width: 767px) {
     #intro {
-        font-size: 100px;
+        font-size: 70px;
     }
     .shrub {
         width: auto;
