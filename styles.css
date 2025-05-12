@@ -67,13 +67,15 @@ body {
     display: flex;
     min-height: 100dvh;
     max-width: 100dvw;
-    max-height: 100dvh;
+    max-height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-image: url("Assets/magic_forest2.jpg");
     background-size: cover;
     background-position: center; 
+    overflow-y: hidden;
+    overflow-x: hidden;
     
     
 }
