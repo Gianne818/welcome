@@ -44,6 +44,21 @@ html, body {
 
 }
 
+.scrollable-container {
+    position: absolute;
+    transition: 300ms ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; 
+    max-height: 100vh; 
+    width: 100%;
+    padding: 20px; 
+    /* display: none; */
+    overflow: hidden;
+}
+
 body {
     animation:  float 3s ease-in-out infinite;  
     font-family: "Tagesschrift", system-ui;
@@ -59,21 +74,6 @@ body {
     background-position: center; 
     
     
-}
-
-.scrollable-container {
-    position: absolute;
-    transition: 300ms ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto; 
-    max-height: 100vh; 
-    width: 100%;
-    padding: 20px; 
-    /* display: none; */
-    overflow: hidden;
 }
 
 #intro {
