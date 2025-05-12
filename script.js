@@ -2,10 +2,24 @@ let errorCount = 0;
 let sound = document.getElementById('music_1');
 let button = document.getElementById('soundOn')
 let clickSFX = document.getElementById('click_sfx');
-sound.play();
+
+
+let startButton = document.getElementById('start_button');
+let startPage = document.getElementById('start_page');
+let loginPage = document.getElementById('login_page');
+
+startButton.addEventListener("click", function() {
+    sound.play();
+    startPage.style.opacity = '0';
+    setTimeout(() => {
+        startPage.style.display = 'none';
+        loginPage.style.opacity = '1';
+    }, 500);
+});
+
+
 
 button.addEventListener("click", event=>{
-    clickSFX.play();
     if(sound.paused){
         sound.play();
         button.src = "Assets/sound_on.png";
