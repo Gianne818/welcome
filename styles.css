@@ -1,13 +1,13 @@
 html, body {
     margin: 0;
-    padding: 0;
+    padding:0;
 }
 
-/*...*/
 
 #start_page{
     position: absolute;
     display: flex;
+    
     min-height: 105%;
     min-width: 100dvw;
     flex-direction: column;
@@ -24,8 +24,8 @@ html, body {
     font-family: "Tagesschrift", system-ui;
     transition: 300ms ease;
     color: #358c95;
-    height: 100px;
-    font-size: 50px;
+    height: 60px;
+    font-size: 25px;
     text-align: center;
     padding: 10px 10px;
     border-radius: 45px 45px;
@@ -43,7 +43,11 @@ html, body {
 .start-text {
     color: #bec5ae;
     font-size: 25px;
+}
 
+#intro_text {
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 .scrollable-container {
@@ -221,10 +225,18 @@ body {
 
 @media (max-width: 767px) {
     #intro {
-        font-size: 70px;
+        font-size: 65px;
     }
     .shrub {
         width: auto;
         height: 250px;
+    }
+
+    .start-text {
+        font-size: 18px;
+    }
+
+    #soundOn{
+        height: 75px;
     }
 }
