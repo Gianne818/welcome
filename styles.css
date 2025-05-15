@@ -50,6 +50,11 @@ html, body {
     padding-left: 30px;
 }
 
+#continue-text {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
 .scrollable-container {
     transition: 300ms ease;
     display: flex;
