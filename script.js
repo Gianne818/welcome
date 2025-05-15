@@ -79,7 +79,7 @@ function formValidation(){
     } 
     if (!isError){
         console.log("Validation successful, redirecting...");
-        window.location.href = 'page_2/index.html';
+        window.location.href = 'page_2/triumph.html';
         return true;
     }
    

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Tagesschrift&display=swap" rel="stylesheet">
+        <title>Hall of the Triumphant</title>
+        <link rel="stylesheet" href="triumph.css">
+    </head>
+    <body>
+        <div id="startPageTriumph" class="startTextTriumph">
+            <p id="triumphStart">
+                You have faced every obstacle in your way. Claim your trophy, victor,
+                and celebrate for you have triumphed. However, you must remember, your
+                journey has not yet finished. Continue to gather every bit of knowledege,
+                for you shall forge them into the finest of wisdoms.
+            </p>
+            <p id="triumphContinue">If you are ready to continue, click the button below.</p>
+            <button id="start_button">Continue</button>
+        </div>
+
+        <div class="mainContent">
+            <img src="Assets/sound_on.png" id="soundOn">
+            <audio id="music_1" autoplay loop> <source src="Assets_Triumph/Somersault.mp3"> </audio>
+            <audio id="click_sfx"> <source src="Assets_Triumph/click_sfx.mp3"> </audio>
+                
+            <p id="mirrorIntro">Find a way to claim the trophy.</p>
+            <p id="mirrorText">
+                ?ytiroirp <input type="text" id="answerOne"> rebmun rouy eb tneitap rouy dluohs ,esrun ,em lleT .eno tnahpmuirt eht eb 
+                ot mialcorp uoy ecnis rettam t'nseod ti ,lleW ?erised s'traeh ruoy ti si rO ?ytilaer ti Si 
+                ?ees uoy od tahW .rorrim eht ni noitcelfer ruoy ees ouY
+            </p>
+            <p id="hint">tniH</p>
+
+            <label id="answerLabel" for="answer">Answer: </label>
+            <select id="answer">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+    </body>
+    <script src="triumph.js"></script>
+</html>
