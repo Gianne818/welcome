@@ -87,7 +87,7 @@ body {
 }
 
 #mirrorIntro {
-    font-size: 40px; 
+    font-size: 50px; 
 }
 
 #mirrorText {
@@ -100,7 +100,7 @@ body {
     transition: 300ms ease;
     filter: 
         hue-rotate(210deg) 
-        saturate(0.8) 
+        saturate(0.4) 
         brightness(0.8) 
         contrast(1.1) 
         sepia(0.9);
