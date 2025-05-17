@@ -7,7 +7,7 @@ html, body {
 #start_page{
     position: absolute;
     display: flex;
-    
+    z-index: 1;
     min-height: 105%;
     min-width: 100dvw;
     flex-direction: column;
