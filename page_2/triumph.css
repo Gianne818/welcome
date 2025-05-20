@@ -90,7 +90,7 @@ body {
     background-color:  #f4b24e;
 }
 
-#continue_button:hover, #inside_button:hover{
+#continue_button:hover, #inside_button:hover, #submit_button:hover {
     background-color: #bb9c86;
     color: #F4B24E;;
     scale: 1.3;
@@ -127,6 +127,7 @@ body {
 .mirror {
     animation: grow .1s linear;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -206,7 +207,7 @@ body {
 }
 
 
-#answer {
+#answer, #answerError {
     font-family: "Tagesschrift", system-ui;
     background-color: rgba(255, 255, 255, 0.15); 
     backdrop-filter: blur(5px);
@@ -216,6 +217,29 @@ body {
     font-size: clamp(14px, 3.5vw, 17px);
     color: #F3B77B;
     text-shadow: 1px 1.5px #415C83;
+}
+
+#submit_button {
+    font-family: "Tagesschrift", system-ui;
+    transition: 300ms ease;
+    color: #816b57;
+    height: 60px;
+    font-size: clamp(14px, 4vw, 27px);
+    text-align: center;
+    padding: 10px 10px;
+    border-radius: 45px 45px;
+    border: none;
+    background-color:  #f4b24e;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#answerHint, #answerError {
+    opacity: 0;
+    display: block;
+    transition: opacity 0.3s ease;
+    display: none;
 }
 
 #mirrorDialogue.fade-out {
@@ -261,5 +285,10 @@ body {
 
     .dialogues {
         height: auto;
+    }
+
+    #submit_button {
+        padding-top: 8px;
+        height: 35px;
     }
 }

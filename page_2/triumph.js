@@ -51,13 +51,13 @@ goInside.addEventListener("click", event=>{
 /*Temple Mirror Texts*/
 let mirrorDialogues = document.getElementById('dialogues');
 let texts = [
-    "You see the trophy inside the mirror.",
+    "You see the trophy inside a mirror.",
     "Inscriptions float inside your head.",
     `?ytiroirp <input type="text" id="answerOne"> rebmun rouy eb tneitap rouy dluohs ,esrun ,em lleT .eno tnahpmuirt eht eb ot mialcorp uoy ecnis rettam t'nseod ti ,lleW ?erised s'traeh ruoy ti si rO ?ytilaer ti Si ?ees uoy od tahW .rorrim eht ni noitcelfer ruoy ees ouY`
 ]
 
 let box = document.getElementById('mirrorDialogue');
-let curInd = 0;
+let curInd = -1;
 
 function showNextText() {
   box.classList.add("fade-out");
@@ -66,9 +66,8 @@ function showNextText() {
     box.innerHTML = texts[curInd];
     box.classList.remove("fade-out");
     box.classList.add("fade-in");
-  }, 500); // Wait for fade-out to finish
-
-  // Remove fade-in class after animation to allow it again
+  }, 500); 
+  
   setTimeout(() => {
     box.classList.remove("fade-in");
   }, 1000);
@@ -82,15 +81,57 @@ mirrorDialogues.addEventListener("click", event=>{
     } 
 });
 
-/*
-mirror.addEventListener("click", event => {
-    texts[curInd].classList.remove('active');
-    curInd++;
-    if (curInd < texts.length) {
-        texts[curInd].classList.add('active');
+
+/*Temple Answer Validation*/
+let numError = 0;
+let hint = document.getElementById('answerHint');
+let error = document.getElementById('answerError');
+let finalAnswer = document.getElementById('answer');
+let submitButton = document.getElementById('submit_button');
+
+submitButton.addEventListener("click", event=>{
+    let answerOne = document.getElementById('answerOne');
+    if (!answerOne) {
+        return;
+    }
+
+    let answerOneValue = answerOne.value.trim().toLowerCase();
+    let finalAnswerValue = finalAnswer.value.trim().toLowerCase();
+    
+    
+
+    if(answerOneValue==="eno" ||  answerOneValue==="1"){
+        if(finalAnswerValue==="no"){
+            window.location.href = '/page_3/wasteland.html';
+        }
     } else {
-        curInd = 0;
-        texts[curInd].classList.add('active');
+        if(numError >= 3){
+            error.textContent = "Hint: Read bottom-top, right-left."
+        } else {
+            error.style.opacity = "1";
+            error.style.display = "block";
+            error.textContent = "Wrong Answers!";
+            numError++;
+        }
     }
 });
-*/
+
+/*Hint button*/
+
+let hintButton = document.getElementById('hint');
+
+hintButton.addEventListener("click", event=>{
+    let answerOne = document.getElementById('answerOne');
+    if(!answerOne) {
+        error.style.opacity = "1";
+        error.style.display = "block";
+        error.textContent = "Hint: Click the Text Box";
+    } else {
+        error.style.opacity = "1";
+        error.style.display = "block";
+        error.textContent = "Hint: Read bottom-top, right-left.";
+    }
+    
+});
+    
+
