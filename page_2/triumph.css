@@ -21,81 +21,8 @@ body {
     overflow-x: hidden;
 }
 
-.startTextTriumph {
-    position: absolute;
-    display: flex;
-    min-height: 105%;
-    min-width: 100dvw;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(to bottom, #A98789,#DAA794, #E8D2B9);
-    background-size: cover;
-    transition: opacity 2s ease;
-    width: 100%;
-    font-size: 25px;
-    color: #3E526E;
-    overflow: hidden;
-}
 
-
-#triumphStart, #triumphContinue {
-    padding-right: 30px;
-    padding-left: 30px;
-}
-
-#continue_button {
-    font-family: "Tagesschrift", system-ui;
-    transition: 300ms ease;
-    color: #816b57;
-    height: 60px;
-    font-size: 25px;
-    text-align: center;
-    padding: 10px 10px;
-    border-radius: 45px 45px;
-    border: none;
-    background-color:#F4B24E;
-}
-
-#continue_button:hover{
-    background-color: #bb9c86;
-    color: #F4B24E;;
-    scale: 1.3;
-}
-
-.mainContent {
-    transition: 300ms ease;
-    display: flex;
-    color: #F3B77B;
-    text-shadow: 1px 1.5px #415C83;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto; 
-    max-height: 100dvh; 
-    width: 100%;
-    padding: 20px; 
-    overflow: hidden;
-    display: none;
-}
-
-.mirror {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#mirrorIntro {
-    font-size: 50px; 
-}
-
-#mirrorText {
-    font-size: 25px;
-    padding-right: 30px;
-    padding-left: 30px;
-}
-
+/*Sound Controls*/
 #soundOn{
     transition: 300ms ease;
     filter: 
@@ -125,6 +52,145 @@ body {
     scale: 1.1;
 }
 
+
+/*Start Page*/
+.startTextTriumph {
+    position: absolute;
+    display: flex;
+    min-height: 105%;
+    min-width: 100dvw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom, #A98789,#DAA794, #E8D2B9);
+    background-size: cover;
+    transition: opacity 2s ease;
+    width: 100%;
+    font-size: 25px;
+    color: #3E526E;
+    overflow: hidden;
+}
+
+
+#triumphStart, #triumphContinue {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+#continue_button, #inside_button {
+    font-family: "Tagesschrift", system-ui;
+    transition: 300ms ease;
+    color: #816b57;
+    height: 60px;
+    font-size: 25px;
+    text-align: center;
+    padding: 10px 10px;
+    border-radius: 45px 45px;
+    border: none;
+    background-color:  #f4b24e;
+}
+
+#continue_button:hover, #inside_button:hover{
+    background-color: #bb9c86;
+    color: #F4B24E;;
+    scale: 1.3;
+}
+
+/*Main Page*/
+.mainContent {
+    transition: 300ms ease;
+    display: flex;
+    color: #F3B77B;
+    text-shadow: 1px 1.5px #415C83;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; 
+    max-height: 100dvh; 
+    width: 100%;
+    padding: 20px; 
+    overflow: hidden;
+    display: none;
+}
+
+
+/*Inside Temple*/
+#goinside {
+    font-size: 30px;
+}
+
+.mirror {
+    animation: grow .5s linear;
+    position: center;
+    display: flex;
+    color: #F3B77B;
+    text-shadow: 1px 1.5px #415C83;
+    height: calc((70dvw * 2) / 3); 
+    width: 70dvw;
+    background-image: url(Assets_Triumph/trophy.png);
+    background-position: center;
+    background-size: cover;
+    border: solid;
+    border-color: rgba(244, 178, 78, 0.2);
+    border-width: 10px;
+    border-radius: 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    display: none;
+}
+
+/* #templeTexts {
+    position: fixed;    
+    top: 125px;
+    left: 250px;
+} */
+
+#textBox{
+    transition: opacity 300ms ease, visibility 300ms ease;
+    position: absolute;
+    font-size: 25px;
+    padding-right: 30px;
+    padding-left: 30px;
+    opacity: 0; 
+    width: 60dvw;
+}
+
+.text.active {
+    opacity: 1; 
+}
+
+ #mirrorIntro {
+    font-size: 50px; 
+}
+
+/*
+#mirrorText {
+    transition: 300ms ease;
+    font-size: 25px;
+    padding-right: 30px;
+    padding-left: 30px;
+    display: none;
+}
+
+#introMirrorText1 {
+    transition: 300ms ease;
+    font-size: 25px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+#introMirrorText2 {
+    transition: 300ms ease;
+    font-size: 25px;
+    padding-right: 30px;
+    padding-left: 30px;
+    display: none
+} */
+
+
+
 #answerOne {
     font-family: "Tagesschrift", system-ui;
     background-color: rgba(255, 255, 255, 0.15); 
@@ -145,12 +211,23 @@ body {
 
 }
 
+
+/*Animations and Media*/
 @keyframes float {
     0%, 100%{
         transform: translateY(0);
     }
     50%{
         transform: translateY(-4px);
+    }
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
     }
 }
 
