@@ -66,7 +66,7 @@ body {
     background-size: cover;
     transition: opacity 2s ease;
     width: 100%;
-    font-size: 25px;
+    font-size: clamp(18px, 3.5vw, 25px);
     color: #3E526E;
     overflow: hidden;
 }
@@ -82,7 +82,7 @@ body {
     transition: 300ms ease;
     color: #816b57;
     height: 60px;
-    font-size: 25px;
+    font-size: clamp(18px, 4vw, 25px);
     text-align: center;
     padding: 10px 10px;
     border-radius: 45px 45px;
@@ -113,83 +113,75 @@ body {
     display: none;
 }
 
-
-/*Inside Temple*/
-#goinside {
-    font-size: 30px;
+ #textIntro {
+    font-size: clamp(28px, 6vw, 50px);
 }
 
+#goinside {
+    font-size: clamp(18px, 4vw, 25px);
+}
+
+
+/*Inside Temple*/
+
 .mirror {
-    animation: grow .5s linear;
-    position: center;
+    animation: grow .1s linear;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
     color: #F3B77B;
     text-shadow: 1px 1.5px #415C83;
     height: calc((70dvw * 2) / 3); 
     width: 70dvw;
+
     background-image: url(Assets_Triumph/trophy.png);
     background-position: center;
     background-size: cover;
+
     border: solid;
     border-color: rgba(244, 178, 78, 0.2);
     border-width: 10px;
     border-radius: 15px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
     z-index: 1;
     display: none;
 }
 
-/* #templeTexts {
-    position: fixed;    
-    top: 125px;
-    left: 250px;
-} */
-
-#textBox{
-    transition: opacity 300ms ease, visibility 300ms ease;
-    position: absolute;
-    font-size: 25px;
-    padding-right: 30px;
-    padding-left: 30px;
-    opacity: 0; 
-    width: 60dvw;
+.dialogues {
+    margin-top: 20px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px);
+    width: 50dvw;
+    height: 120px;
+    font-size: clamp(14px, 3.5vw, 17px);
 }
 
-.text.active {
-    opacity: 1; 
+#mirrorDialogue {
+    transition: opacity .5s linear;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
- #mirrorIntro {
-    font-size: 50px; 
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 20px;
 }
 
-/*
-#mirrorText {
+#hint {
     transition: 300ms ease;
-    font-size: 25px;
-    padding-right: 30px;
-    padding-left: 30px;
-    display: none;
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px);
+    border: none; 
+    padding: 10px 10px;
+    border-radius: 45px 45px;
+    font-size: clamp(14px, 3.5vw, 17px);
 }
-
-#introMirrorText1 {
-    transition: 300ms ease;
-    font-size: 25px;
-    padding-right: 30px;
-    padding-left: 30px;
-}
-
-#introMirrorText2 {
-    transition: 300ms ease;
-    font-size: 25px;
-    padding-right: 30px;
-    padding-left: 30px;
-    display: none
-} */
-
-
 
 #answerOne {
     font-family: "Tagesschrift", system-ui;
@@ -200,16 +192,39 @@ body {
     backdrop-filter: blur(5px); 
     height: 25px;
     width: 75px;
-    font-size: 25px;
+    font-size: clamp(14px, 4vw, 27px);
     color: #F3B77B;
     text-shadow: 1px 1.5px #415C83;
 }
 
 #answerOne:hover {
     scale: 1.05;
-    background-color: rgba(255, 255, 255, 0.3); 
-
 }
+
+#hint:hover, #answer:hover {
+    scale: 1.2;
+}
+
+
+#answer {
+    font-family: "Tagesschrift", system-ui;
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px);
+    border: none; 
+    border-radius: 5px;
+    padding: 5px; 
+    font-size: clamp(14px, 3.5vw, 17px);
+}
+
+#mirrorDialogue.fade-out {
+  opacity: 0;
+}
+
+#mirrorDialogue.fade-in {
+  opacity: 1;
+}
+
+
 
 
 /*Animations and Media*/
@@ -233,15 +248,12 @@ body {
 
 
 @media (max-width: 767px) {
-    #intro {
-        font-size: 65px;
-    }
-
-    .start-text {
-        font-size: 18px;
-    }
-
     #soundOn{
         height: 75px;
+    }
+
+    .mirror {
+        height: calc((70vw * 3) / 2); 
+        width: 70dvw;
     }
 }

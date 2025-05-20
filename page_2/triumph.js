@@ -49,25 +49,37 @@ goInside.addEventListener("click", event=>{
 
 
 /*Temple Mirror Texts*/
+let mirrorDialogues = document.getElementById('dialogues');
 let texts = [
-    document.getElementById('introMirrorText1'),
-    document.getElementById('introMirrorText2'),
-    document.getElementById('mirrorText')
-];
+    "You see the trophy inside the mirror.",
+    "Inscriptions float inside your head.",
+    `?ytiroirp <input type="text" id="answerOne"> rebmun rouy eb tneitap rouy dluohs ,esrun ,em lleT .eno tnahpmuirt eht eb ot mialcorp uoy ecnis rettam t'nseod ti ,lleW ?erised s'traeh ruoy ti si rO ?ytilaer ti Si ?ees uoy od tahW .rorrim eht ni noitcelfer ruoy ees ouY`
+]
 
-texts.forEach(text => text.classList.add('text'));
-texts[0].classList.add('active');
+let box = document.getElementById('mirrorDialogue');
 let curInd = 0;
 
-mirror.addEventListener("click", event=>{
-    curInd++;
-    if (curInd < texts.length) {
-        texts[curInd-1].classList.remove('active');
-        texts[curInd].classList.add('active');
-    } else if (curInd === texts.length-1){
-        curInd = texts.length-2;
-        
-    }
+function showNextText() {
+  box.classList.add("fade-out");
+
+  setTimeout(() => {
+    box.innerHTML = texts[curInd];
+    box.classList.remove("fade-out");
+    box.classList.add("fade-in");
+  }, 500); // Wait for fade-out to finish
+
+  // Remove fade-in class after animation to allow it again
+  setTimeout(() => {
+    box.classList.remove("fade-in");
+  }, 1000);
+}
+
+
+mirrorDialogues.addEventListener("click", event=>{
+    if (curInd < texts.length-1) {
+        showNextText();
+        curInd++;
+    } 
 });
 
 /*
