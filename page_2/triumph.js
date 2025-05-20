@@ -103,8 +103,11 @@ submitButton.addEventListener("click", event=>{
     if(answerOneValue==="eno" ||  answerOneValue==="1"){
         if(finalAnswerValue==="no"){
             window.location.href = '/page_3/wasteland.html';
+        } else {
+            error.textContent = "Wrong Answer!";
         }
-    } else {
+    } 
+    else {
         if(numError >= 3){
             error.textContent = "Hint: Read bottom-top, right-left."
         } else {
