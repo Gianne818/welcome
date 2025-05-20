@@ -214,6 +214,8 @@ body {
     border-radius: 5px;
     padding: 5px; 
     font-size: clamp(14px, 3.5vw, 17px);
+    color: #F3B77B;
+    text-shadow: 1px 1.5px #415C83;
 }
 
 #mirrorDialogue.fade-out {
@@ -255,5 +257,9 @@ body {
     .mirror {
         height: calc((70vw * 3) / 2); 
         width: 70dvw;
+    }
+
+    .dialogues {
+        height: auto;
     }
 }
