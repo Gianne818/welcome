@@ -102,7 +102,7 @@ submitButton.addEventListener("click", event=>{
 
     if(answerOneValue==="eno" ||  answerOneValue==="1"){
         if(finalAnswerValue==="no"){
-            window.location.href = '/page_3/wasteland.html';
+            window.location.href = 'page_3/wasteland.html';
         } else {
             error.textContent = "Wrong Answer!";
         }
