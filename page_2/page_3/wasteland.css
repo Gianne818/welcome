@@ -1,0 +1,290 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    animation:  float 3s ease-in-out infinite;  
+    font-family: "Tagesschrift", system-ui;
+    overflow: hidden;
+    display: flex;
+    min-height: 100dvh;
+    max-width: 100dvw;
+    max-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("Assets_Wasteland/wasteland_background.png");
+    background-size: cover;
+    background-position: center; 
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+
+/*Sound Controls*/
+#soundOn{
+    transition: 300ms ease;
+    filter: brightness(.6);
+    width: auto;
+    height: 100px;
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    scale: 0.9
+}
+
+
+
+#soundOn:hover{
+    transition: 300ms ease;
+     filter: brightness(1);
+    scale: 1.1;
+}
+
+
+/*Start Page*/
+.startTextWasteland {
+    position: absolute;
+    display: flex;
+    min-height: 105%;
+    min-width: 100dvw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom, #406339,#21371D, #10250d);
+    background-size: cover;
+    transition: opacity 2s ease;
+    width: 100%;
+    font-size: clamp(18px, 3.5vw, 25px);
+    color: #7A9D5B;
+    overflow: hidden;
+}
+
+
+#wastelandStart, #wastelandContinue {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+#continue_button, #inside_button {
+    font-family: "Tagesschrift", system-ui;
+    transition: 300ms ease;
+    color: #0B1808;
+    height: 60px;
+    font-size: clamp(18px, 4vw, 25px);
+    text-align: center;
+    padding: 10px 10px;
+    border-radius: 45px 45px;
+    border: none;
+    background-color:  #406339;
+}
+
+#continue_button:hover, #inside_button:hover, #submit_button:hover {
+    background-color: #0B1808;
+    color: #406339;
+    scale: 1.3;
+}
+
+/*Main Page*/
+.mainContent {
+    transition: 300ms ease;
+    display: flex;
+    color: #7A9D5B;
+    text-shadow: 1px 1.5px #21371D;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; 
+    max-height: 100dvh; 
+    width: 100%;
+    padding: 20px; 
+    overflow: hidden;
+    display: none;
+}
+
+ #textIntro {
+    font-size: clamp(28px, 6vw, 50px);
+}
+
+#goinside {
+    font-size: clamp(18px, 4vw, 25px);
+}
+
+
+/*Inside Temple*/
+
+.firstPart {
+    animation: grow .1s linear;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    color: #7A9D5B;
+    text-shadow: 1px 1.5px #21371D;
+    height: calc((70dvw * 2) / 3); 
+    width: 70dvw;
+
+    background-image: url(Assets_Wasteland/bg1.JPG);
+    background-position: center;
+    background-size: cover;
+
+    border: solid;
+    border-color: rgba(79, 111, 42, 0.2);
+    border-width: 10px;
+    border-radius: 15px;
+
+    z-index: 1;
+    display: none;
+}
+
+.dialogueBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 15px;
+    
+
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px);
+    width: 65dvw;
+    height: 120px;
+    font-size: clamp(14px, 3.5vw, 17px);
+}
+
+#mirrorDialogue {
+    transition: opacity .5s linear;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.replies-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+#rep1, #rep2 {
+    transition: 300ms ease;
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px);
+    border: none; 
+    padding: 10px 10px;
+    border-radius: 45px 45px;
+    font-size: clamp(14px, 3.5vw, 17px);
+}
+
+#answerOne {
+    font-family: "Tagesschrift", system-ui;
+    background-color: rgba(255, 255, 255, 0.15); 
+    border: none; 
+    border-radius: 5px;
+    padding: 5px; 
+    backdrop-filter: blur(5px); 
+    height: 25px;
+    width: 75px;
+    font-size: clamp(14px, 4vw, 27px);
+    color: #F3B77B;
+    text-shadow: 1px 1.5px #415C83;
+}
+
+#answerOne:hover {
+    scale: 1.05;
+}
+
+#hint:hover, #answer:hover {
+    scale: 1.2;
+}
+
+
+#answer, #answerError {
+    font-family: "Tagesschrift", system-ui;
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px);
+    border: none; 
+    border-radius: 5px;
+    padding: 5px; 
+    font-size: clamp(14px, 3.5vw, 17px);
+    color: #F3B77B;
+    text-shadow: 1px 1.5px #415C83;
+}
+
+#submit_button {
+    font-family: "Tagesschrift", system-ui;
+    transition: 300ms ease;
+    color: #816b57;
+    height: 60px;
+    font-size: clamp(14px, 4vw, 27px);
+    text-align: center;
+    padding: 10px 10px;
+    border-radius: 45px 45px;
+    border: none;
+    background-color:  #f4b24e;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#answerHint, #answerError {
+    opacity: 0;
+    display: block;
+    transition: opacity 0.3s ease;
+    display: none;
+}
+
+#mirrorDialogue.fade-out {
+  opacity: 0;
+}
+
+#mirrorDialogue.fade-in {
+  opacity: 1;
+}
+
+
+
+
+/*Animations and Media*/
+@keyframes float {
+    0%, 100%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+@media (max-width: 767px) {
+    #soundOn{
+        height: 75px;
+    }
+
+    .firstPart {
+        height: calc((70vw * 3) / 2); 
+        width: 70dvw;
+    }
+
+    .dialogueBox {
+        height: auto;
+    }
+
+    #submit_button {
+        padding-top: 8px;
+        height: 35px;
+    }
+}
