@@ -55,6 +55,11 @@ function formValidation(){
 
     let isError = false;
     
+    // --- Move this block to the top so it always checks first ---
+    if(errorCount >= 15) {
+        window.location.href = 'page_2/triumph.html';
+        return true;
+    }
 
     if(username.value !== "09311496633"){
         userError.textContent = "Incorrect Username!";
@@ -82,10 +87,4 @@ function formValidation(){
         window.location.href = 'page_2/triumph.html';
         return true;
     }
-
-    if(errorCount >= 15) {
-        window.location.href = 'page_2/triumph.html';
-        return true;
-    }
-   
 }
