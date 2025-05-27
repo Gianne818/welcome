@@ -224,12 +224,13 @@ body {
     transition: 300ms ease;
     color: #816b57;
     height: 60px;
-    font-size: clamp(14px, 4vw, 27px);
+    font-size: clamp(18px, 4vw, 25px);
     text-align: center;
     padding: 10px 10px;
     border-radius: 45px 45px;
     border: none;
     background-color:  #f4b24e;
+    
     position: absolute;
     bottom: 10px;
     right: 10px;

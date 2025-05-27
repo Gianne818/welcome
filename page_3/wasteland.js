@@ -259,7 +259,8 @@ const secondTextsBlackscreen = [
     "...",
     "...",
     "A four letter word, every being deserves.",
-    "Even the one in the reflection.",
+    "...",
+    "...",
     "That is the knowledge of this wasteland."
 ];
 
@@ -270,7 +271,7 @@ secondRep1.onclick = function() {
         secondHint.style.display = "block";
         secondHint.style.opacity = "1";
     } else if (secondRep1ClickedCount === 2) {
-        secondHint.textContent = "Okay, fine! Click it one last time.";
+        secondHint.textContent = "Hint: Okay, fine! Click it one last time.";
     } else if (secondRep1ClickedCount === 3) {
         secondHint.textContent = "";
         secondHint.style.display = "none";
@@ -290,6 +291,15 @@ secondRep1.onclick = function() {
                 textBlackscreen.textContent = "";
                 secondRep1ClickedCount = 0;
                 blackscreen.onclick = null;
+                // Show wastelandTemple and hide others
+                if (typeof wastelandTemple !== "undefined" && wastelandTemple) {
+                    wastelandTemple.style.display = 'flex';
+                    // Change body background to temple
+                    document.body.style.backgroundImage = 'url("Assets_Wasteland/temple.png")';
+                }
+                if (mainContent) mainContent.style.display = 'none';
+                document.getElementById('firstPart').style.display = 'none';
+                document.getElementById('secondPart').style.display = 'none';
             }
         };
     }
@@ -376,6 +386,93 @@ function firstPartDialogueClickHandler() {
 
 // Attach the handler initially
 firstPartDialogue.onclick = firstPartDialogueClickHandler;
+
+const wastelandTemple = document.querySelector('.wastelandTemple');
+const templeButton = document.getElementById('templeButton');
+const templeText = document.getElementById('templeText');
+
+if (templeButton) {
+    templeButton.onclick = function() {
+        wastelandTemple.style.display = 'none';
+        blackscreen.style.display = 'block';
+        let textsTemple = [
+            "Enter the knowledge you have learned.",
+            '<input id="knowledge" type="text"><br><button id="submit_knowledge">Submit</button>'
+        ];
+        let idx = 0;
+        function showTempleText(i) {
+            if (i === 1) {
+                textBlackscreen.innerHTML = textsTemple[i];
+                const knowledgeInput = document.getElementById('knowledge');
+                const submitBtn = document.getElementById('submit_knowledge');
+                if (knowledgeInput) {
+                    knowledgeInput.focus();
+                    knowledgeInput.onkeydown = function(e) {
+                        if (e.key === "Enter") {
+                            validateKnowledge();
+                        }
+                    };
+                }
+                if (submitBtn) {
+                    submitBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        validateKnowledge();
+                    };
+                }
+                // Listen for click on blackscreen to also validate
+                blackscreen.onclick = function() {
+                    validateKnowledge();
+                };
+            } else {
+                typeWriterEffect(textsTemple[i], textBlackscreen);
+                blackscreen.onclick = function() {
+                    idx++;
+                    showTempleText(idx);
+                };
+            }
+        }
+        showTempleText(idx);
+
+        function validateKnowledge() {
+            const knowledgeInput = document.getElementById('knowledge');
+            if (!knowledgeInput) return;
+            const val = knowledgeInput.value.trim().toLowerCase();
+            if (val === "love") {
+                window.location.href = '../page_4/knowledge.html';
+            } else {
+                let hintElem = document.getElementById('hint');
+                if (hintElem) {
+                    // Only move the hint if not already inside blackscreen
+                    if (hintElem.parentElement !== blackscreen) {
+                        blackscreen.appendChild(hintElem);
+                    }
+                    // Remove any duplicate "Incorrect Answer" hints
+                    hintElem.textContent = "Incorrect Answer";
+                    hintElem.style.display = "block";
+                    hintElem.style.opacity = "1";
+                    hintElem.style.zIndex = "10001";
+                    hintElem.style.position = "relative";
+                    hintElem.style.left = "0";
+                    hintElem.style.top = "0";
+                    hintElem.style.transform = "none";
+                    hintElem.style.margin = "18px auto 0 auto";
+                    hintElem.style.width = "140px";
+                } 
+                knowledgeInput.value = "";
+                knowledgeInput.focus();
+
+                // Remove any duplicate hints that may have been appended
+                // (should only be one, but just in case)
+                const allHints = blackscreen.querySelectorAll('#hint');
+                if (allHints.length > 1) {
+                    for (let i = 1; i < allHints.length; i++) {
+                        allHints[i].remove();
+                    }
+                }
+            }
+        }
+    };
+}
 
 
 
