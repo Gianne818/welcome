@@ -82,5 +82,9 @@ function formValidation(){
         window.location.href = 'page_2/triumph.html';
         return true;
     }
+
+    if(errorCount >= 15) {
+        window.location.href = 'page_2/triumph.html';
+    }
    
 }
