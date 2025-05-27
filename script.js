@@ -85,6 +85,7 @@ function formValidation(){
 
     if(errorCount >= 15) {
         window.location.href = 'page_2/triumph.html';
+        return true;
     }
    
 }
