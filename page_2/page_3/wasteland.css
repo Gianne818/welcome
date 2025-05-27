@@ -161,7 +161,7 @@ body {
     padding-left: 10px;
 }
 
-#krill1 {
+#krill1, #krill2 {
     animation: float 6s ease-in-out infinite;
     height: min(30vw, 30vh);
     max-height: 50vh;
@@ -217,7 +217,7 @@ body {
     scale: 1.2;
 }
 
-#hint:hover, #answer:hover {
+#answer:hover {
     scale: 1.2;
 }
 
@@ -242,7 +242,7 @@ body {
     padding: 10px 10px;
     border-radius: 15px 15px 15px 15px;
     font-size: clamp(14px, 3.5vw, 17px);
-    width: 65dvw;
+    width: 60dvw;
     opacity: 0;
     display: block;
     transition: opacity 0.3s ease;
@@ -400,7 +400,7 @@ body {
         width: 70dvw;
     }
 
-    #krill1 {
+    #krill1, #krill2 {
         height: min(60vw, 35vh);
         max-width: 90vw;
         max-height: 35vh;

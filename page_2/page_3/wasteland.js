@@ -60,18 +60,17 @@ let texts = [
 let box = document.getElementById('firstPartDialogue');
 let curInd = -1;
 
+// General typewriter effect for any element
 let typeWriterTimeout = null;
 let isTyping = false;
-
-function typeWriterEffect(text, element) {
+function typeWriterEffect(text, element, onDone) {
     element.innerHTML = "";
     let i = 0;
     isTyping = true;
-
     function type() {
-        // If typing was interrupted, show full text
         if (!isTyping) {
             element.innerHTML = text;
+            if (onDone) onDone();
             return;
         }
         if (i < text.length) {
@@ -80,35 +79,39 @@ function typeWriterEffect(text, element) {
             typeWriterTimeout = setTimeout(type, 30);
         } else {
             isTyping = false;
+            if (onDone) onDone();
         }
     }
     type();
 }
 
-firstPartDialogue.addEventListener("click", () => {
-    // If typewriter is running, finish instantly
-    if (isTyping) {
-        isTyping = false;
-        if (typeWriterTimeout) clearTimeout(typeWriterTimeout);
-        // Show full current text
-        if (curInd >= 0 && curInd < texts.length) {
-            box.innerHTML = texts[curInd];
+let hasEnteredSecondPart = false;
+
+if(!hasEnteredSecondPart){
+    firstPartDialogue.addEventListener("click", () => {
+        if (isTyping) {
+            isTyping = false;
+            if (typeWriterTimeout) clearTimeout(typeWriterTimeout);
+            if (curInd >= 0 && curInd < texts.length) {
+                box.innerHTML = texts[curInd];
+            }
+            return;
         }
-        return;
-    }
-    if (curInd < texts.length - 1) {
-        curInd++;
-        typeWriterEffect(texts[curInd], box);
-        // Show replies-section after last text
-        if (curInd === texts.length - 1) {
-            setTimeout(() => {
-                repliesSection.style.display = 'flex';
-                rep1.textContent = "Offer gold";
-                rep2.textContent = "Run away";
-            }, texts[curInd].length * 30 + 100); // Wait for typewriter effect to finish
+        if (curInd < texts.length - 1) {
+            curInd++;
+            typeWriterEffect(texts[curInd], box);
+            if (curInd === texts.length - 1) {
+                setTimeout(() => {
+                    repliesSection.style.display = 'flex';
+                    rep1.textContent = "Offer gold";
+                    rep2.textContent = "Run away";
+                }, texts[curInd].length * 30 + 100);
+            }
         }
-    }
-});
+    });
+}
+
+
 
 let repliesSection = document.querySelector('.replies-section');
 let rep1 = document.getElementById('rep1');
@@ -123,71 +126,6 @@ repliesSection.style.display = 'none';
 
 // Track confirmation state for rep1
 let rep1ClickedOnce = false;
-
-function typeWriterEffectBlackscreen(texts, element, callback) {
-    let idx = 0;
-    function showCurrentText() {
-        let text = texts[idx];
-        let i = 0;
-        element.innerHTML = "";
-        function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, 30);
-            }
-        }
-        type();
-    }
-
-    function onClick() {
-        if (idx < texts.length) {
-            showCurrentText();
-            // Wait for user click to proceed to next text
-            let proceed = function() {
-                idx++;
-                if (idx < texts.length) {
-                    showCurrentText();
-                } else {
-                    // Remove click listener and proceed
-                    blackscreen.removeEventListener('click', proceed);
-                    if (callback) callback();
-                }
-                // Only advance on click after text is fully shown
-                blackscreen.removeEventListener('click', proceed);
-                setTimeout(() => {
-                    blackscreen.addEventListener('click', proceed);
-                }, texts[Math.max(idx-1,0)].length * 30 + 50);
-            };
-            // Add click listener after text is fully shown
-            setTimeout(() => {
-                blackscreen.addEventListener('click', proceed);
-            }, text.length * 30 + 50);
-        }
-    }
-
-    // Start with first text
-    showCurrentText();
-    // Remove any previous click listeners
-    blackscreen.onclick = null;
-    // Add click listener for the first advance
-    let proceed = function() {
-        idx++;
-        if (idx < texts.length) {
-            showCurrentText();
-        } else {
-            blackscreen.removeEventListener('click', proceed);
-            if (callback) callback();
-        }
-        blackscreen.removeEventListener('click', proceed);
-        setTimeout(() => {
-            blackscreen.addEventListener('click', proceed);
-        }, texts[Math.max(idx-1,0)].length * 30 + 50);
-    };
-    setTimeout(() => {
-        blackscreen.addEventListener('click', proceed);
-    }, texts[0].length * 30 + 50);
-}
 
 rep1.onclick = function() {
     if (!rep1ClickedOnce) {
@@ -207,12 +145,24 @@ rep1.onclick = function() {
             "...",
             "Do you think the person you see in the reflection is also worthy of gold?"
         ];
-        typeWriterEffectBlackscreen(blackscreenTexts, textBlackscreen, function() {
-            blackscreen.style.display = 'none';
-            textBlackscreen.innerHTML = "";
-            document.getElementById('firstPart').style.display = 'none'; // Hide firstPart
-            secondPart.style.display = 'flex'; // Show secondPart
-        });
+        let idx = 0;
+        function showCurrentText() {
+            typeWriterEffect(blackscreenTexts[idx], textBlackscreen);
+        }
+        showCurrentText();
+        blackscreen.onclick = null;
+        blackscreen.onclick = function() {
+            idx++;
+            if (idx < blackscreenTexts.length) {
+                showCurrentText();
+            } else {
+                blackscreen.style.display = 'none';
+                textBlackscreen.innerHTML = "";
+                blackscreen.onclick = null;
+                document.getElementById('firstPart').style.display = 'none';
+                secondPart.style.display = 'flex';
+            }
+        };
     }
 };
 
@@ -230,22 +180,202 @@ rep2.onclick = function() {
 
 
 
-/*Hint button*/
+/*Second Part Dialogues*/
+let secondPartDialogueBox = document.getElementById('secondPartDialogueBox');
+let secondBox = document.getElementById('secondPartDialogue');
+let secondRepliesSection = document.querySelector('.replies-section2');
+let secondRep1 = document.getElementById('secondrep1');
+let secondRep2 = document.getElementById('secondrep2');
+let krill1 = document.getElementById('krill1');
+let secondCurInd = -1;
+let secondTypeWriterTimeout = null;
+let secondIsTyping = false;
 
-let hintButton = document.getElementById('hint');
+hasEnteredSecondPart = true;
+let secondTexts = [
+    "You see another dark dragon.",
+    "What do you want to do?"
+];
 
-hintButton.addEventListener("click", event=>{
-    let answerOne = document.getElementById('answerOne');
-    if(!answerOne) {
-        error.style.opacity = "1";
-        error.style.display = "block";
-        error.textContent = "Hint: Click the Text Box";
-    } else {
-        error.style.opacity = "1";
-        error.style.display = "block";
-        error.textContent = "Hint: Read bottom-top, right-left.";
+// Hide second replies-section initially
+secondRepliesSection.style.display = 'none';
+
+// Typewriter for second part
+function typeWriterEffectSecond(text, element) {
+    element.innerHTML = "";
+    let i = 0;
+    secondIsTyping = true;
+
+    function type() {
+        if (!secondIsTyping) {
+            element.innerHTML = text;
+            return;
+        }
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            secondTypeWriterTimeout = setTimeout(type, 30);
+        } else {
+            secondIsTyping = false;
+        }
     }
-    
+    type();
+}
+
+// Dialogue click for second part
+secondPartDialogueBox.addEventListener("click", () => {
+    if (secondIsTyping) {
+        secondIsTyping = false;
+        if (secondTypeWriterTimeout) clearTimeout(secondTypeWriterTimeout);
+        if (secondCurInd >= 0 && secondCurInd < secondTexts.length) {
+            secondBox.innerHTML = secondTexts[secondCurInd];
+        }
+        return;
+    }
+    if (secondCurInd < secondTexts.length - 1) {
+        secondCurInd++;
+        secondIsTyping = true;
+        typeWriterEffect(secondTexts[secondCurInd], secondBox, () => { secondIsTyping = false; });
+        if (secondCurInd === secondTexts.length - 1) {
+            setTimeout(() => {
+                secondRepliesSection.style.display = 'flex';
+                secondRep1.textContent = "Offer Gold";
+                secondRep2.textContent = "Run away";
+            }, secondTexts[secondCurInd].length * 30 + 100);
+        }
+    }
 });
+
+// --- Second Part Hint Logic ---
+let secondHint = secondPart.querySelector('#hint');
+let secondRep1ClickedCount = 0;
+let secondRep2ClickedOnce = false;
+
+// Add this array for the blackscreen texts in secondPart
+const secondTextsBlackscreen = [
+    "",
+    "Hint: See? I told you!",
+    "Hint: Fine! I'll give you my gold.",
+    "...",
+    "...",
+    "A four letter word, every being deserves.",
+    "Even the one in the reflection.",
+    "That is the knowledge of this wasteland."
+];
+
+secondRep1.onclick = function() {
+    secondRep1ClickedCount++;
+    if (secondRep1ClickedCount === 1) {
+        secondHint.textContent = "Hint: Are you really sure about this? Click your choice again to confirm.";
+        secondHint.style.display = "block";
+        secondHint.style.opacity = "1";
+    } else if (secondRep1ClickedCount === 2) {
+        secondHint.textContent = "Okay, fine! Click it one last time.";
+    } else if (secondRep1ClickedCount === 3) {
+        secondHint.textContent = "";
+        secondHint.style.display = "none";
+        blackscreen.style.display = 'block';
+        let blackIdx = 0;
+        function showBlackText(idx) {
+            typeWriterEffect(secondTextsBlackscreen[idx], textBlackscreen);
+        }
+        showBlackText(blackIdx);
+        blackscreen.onclick = null;
+        blackscreen.onclick = function() {
+            blackIdx++;
+            if (blackIdx < secondTextsBlackscreen.length) {
+                showBlackText(blackIdx);
+            } else {
+                blackscreen.style.display = 'none';
+                textBlackscreen.textContent = "";
+                secondRep1ClickedCount = 0;
+                blackscreen.onclick = null;
+            }
+        };
+    }
+    secondRep2ClickedOnce = false;
+};
+
+secondRep2.onclick = function() {
+    // Hide secondPart, show firstPart, hide krill1
+    document.getElementById('secondPart').style.display = 'none';
+    document.getElementById('firstPart').style.display = 'flex';
+    if (krill1) krill1.style.display = 'none';
+    // Reset firstPart dialogue state
+    curInd = 2;
+    texts[2] = "";
+    box.innerHTML = "";
+    repliesSection.style.display = 'flex';
+    rep1.textContent = "Proceed";
+    rep2.textContent = "Go Back";
+    // Hide secondPart dialogue state
+    secondCurInd = -1;
+    secondBox.innerHTML = "...";
+    secondRepliesSection.style.display = 'none';
+    // Hide second hint
+    secondHint.textContent = "";
+    secondHint.style.display = "none";
+    secondRep2ClickedOnce = false;
+    secondRep1ClickedCount = 0;
+
+    // Disable firstPartDialogueBox click event
+    hasEnteredSecondPart = true;
+
+    // Set up firstPart rep1/rep2 handlers for this state
+    let goBackClickedOnce = false;
+    rep1.onclick = function() {
+        // Proceed to secondPart immediately
+        document.getElementById('firstPart').style.display = 'none';
+        secondPart.style.display = 'flex';
+        // Reset firstPart state
+        curInd = -1;
+        box.innerHTML = "...";
+        repliesSection.style.display = 'none';
+        hasEnteredSecondPart = false; // Re-enable dialogue click for next time
+        // Restore original handlers after proceeding
+        setupFirstPartHandlers();
+    };
+    rep2.onclick = function() {
+        if (!goBackClickedOnce) {
+            hint.textContent = "If you choose to go back, it will reset your progress. Click your choice again to confirm.";
+            hint.style.display = "block";
+            hint.style.opacity = "1";
+            goBackClickedOnce = true;
+        } else {
+            location.reload();
+        }
+    };
+};
+
+
+
+// --- First Part Dialogue Click Handler ---
+function firstPartDialogueClickHandler() {
+    if (hasEnteredSecondPart) return; // Disable if returned from secondPart
+    // ...existing code for typewriter and advancing dialogue...
+    if (isTyping) {
+        isTyping = false;
+        if (typeWriterTimeout) clearTimeout(typeWriterTimeout);
+        if (curInd >= 0 && curInd < texts.length) {
+            box.innerHTML = texts[curInd];
+        }
+        return;
+    }
+    if (curInd < texts.length - 1) {
+        curInd++;
+        typeWriterEffect(texts[curInd], box);
+        if (curInd === texts.length - 1) {
+            setTimeout(() => {
+                repliesSection.style.display = 'flex';
+                rep1.textContent = "Offer gold";
+                rep2.textContent = "Run away";
+            }, texts[curInd].length * 30 + 100);
+        }
+    }
+}
+
+// Attach the handler initially
+firstPartDialogue.onclick = firstPartDialogueClickHandler;
+
 
 
