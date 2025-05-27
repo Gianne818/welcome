@@ -32,21 +32,36 @@
             <button id="inside_button">Proceed</button>
             
         </div>
-    
+        
+        
         <div class="firstPart" id="firstPart">
-            <div class="dialogueBox" id="dialogueBox">
+            <p id="hint"></p>
+            <img id="krill1" src="Assets_Wasteland/krill1.png">
+            <div class="firstPartDialogueBox" id="firstPartDialogueBox">
                 <p id="firstPartDialogue">...</p>
+                <div class="replies-section" style="display:none;">
+                    <span id="rep1"></span>
+                    <span id="rep2"></span>
+                </div>
             </div>
+        </div>  
 
-            <div class="replies-section">
-                <p id="rep1">...</p>
-                <p id="rep2">...</p>
+        <div class="secondPart" id="secondPart">
+            <p id="hint"></p>
+            <div class="secondPartDialogueBox" id="secondPartDialogueBox">
+                <p id="secondPartDialogue">...</p>
+                <div class="replies-section2" style="display:none;">
+                    <span id="secondrep1"></span>
+                    <span id="secondrep2"></span>
+                </div>
             </div>
         </div>  
         
         
-        <p id="answerError"><br></p>
         
+        <div class="blackscreen" id="blackscreen">
+            <p id="textBlackscreen"></p>
+        </div>
         <script src="wasteland.js"></script>
     </body>
     

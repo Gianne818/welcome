@@ -48,76 +48,187 @@ goInside.addEventListener("click", event=>{
 
 
 
-/*Temple Mirror Texts*/
-let mirrorDialogues = document.getElementById('dialogues');
+/*First Part Texts*/
+let firstPartDialogue = document.getElementById('firstPartDialogueBox');
 let texts = [
-    "You see the trophy inside a mirror.",
-    "Inscriptions float inside your head.",
-    `?ytiroirp <input type="text" id="answerOne"> rebmun rouy eb tneitap rouy dluohs ,esrun ,em lleT .eno tnahpmuirt eht eb ot mialcorp uoy ecnis rettam t'nseod ti ,lleW ?erised s'traeh ruoy ti si rO ?ytilaer ti Si ?ees uoy od tahW .rorrim eht ni noitcelfer ruoy ees ouY`
-]
+    "You see a dark dragon in front of you.",
+    "It is the manifestation of all who succumbed to the wastes.",
+    "What do you want to do?"
+    
+];
 
-let box = document.getElementById('mirrorDialogue');
+let box = document.getElementById('firstPartDialogue');
 let curInd = -1;
 
-function showNextText() {
-  box.classList.add("fade-out");
+let typeWriterTimeout = null;
+let isTyping = false;
 
-  setTimeout(() => {
-    box.innerHTML = texts[curInd];
-    box.classList.remove("fade-out");
-    box.classList.add("fade-in");
-  }, 500); 
-  
-  setTimeout(() => {
-    box.classList.remove("fade-in");
-  }, 1000);
+function typeWriterEffect(text, element) {
+    element.innerHTML = "";
+    let i = 0;
+    isTyping = true;
+
+    function type() {
+        // If typing was interrupted, show full text
+        if (!isTyping) {
+            element.innerHTML = text;
+            return;
+        }
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            typeWriterTimeout = setTimeout(type, 30);
+        } else {
+            isTyping = false;
+        }
+    }
+    type();
 }
 
-
-mirrorDialogues.addEventListener("click", event=>{
-    if (curInd < texts.length-1) {
-        showNextText();
-        curInd++;
-    } 
-});
-
-
-/*Temple Answer Validation*/
-let numError = 0;
-let hint = document.getElementById('answerHint');
-let error = document.getElementById('answerError');
-let finalAnswer = document.getElementById('answer');
-let submitButton = document.getElementById('submit_button');
-
-submitButton.addEventListener("click", event=>{
-    let answerOne = document.getElementById('answerOne');
-    if (!answerOne) {
+firstPartDialogue.addEventListener("click", () => {
+    // If typewriter is running, finish instantly
+    if (isTyping) {
+        isTyping = false;
+        if (typeWriterTimeout) clearTimeout(typeWriterTimeout);
+        // Show full current text
+        if (curInd >= 0 && curInd < texts.length) {
+            box.innerHTML = texts[curInd];
+        }
         return;
     }
-
-    let answerOneValue = answerOne.value.trim().toLowerCase();
-    let finalAnswerValue = finalAnswer.value.trim().toLowerCase();
-    
-    
-
-    if(answerOneValue==="eno" ||  answerOneValue==="1"){
-        if(finalAnswerValue==="no"){
-            window.location.href = 'page_3/wasteland.html';
-        } else {
-            error.textContent = "Wrong Answer!";
-        }
-    } 
-    else {
-        if(numError >= 3){
-            error.textContent = "Hint: Read bottom-top, right-left."
-        } else {
-            error.style.opacity = "1";
-            error.style.display = "block";
-            error.textContent = "Wrong Answers!";
-            numError++;
+    if (curInd < texts.length - 1) {
+        curInd++;
+        typeWriterEffect(texts[curInd], box);
+        // Show replies-section after last text
+        if (curInd === texts.length - 1) {
+            setTimeout(() => {
+                repliesSection.style.display = 'flex';
+                rep1.textContent = "Offer gold";
+                rep2.textContent = "Run away";
+            }, texts[curInd].length * 30 + 100); // Wait for typewriter effect to finish
         }
     }
 });
+
+let repliesSection = document.querySelector('.replies-section');
+let rep1 = document.getElementById('rep1');
+let rep2 = document.getElementById('rep2');
+let blackscreen = document.getElementById('blackscreen');
+let hint = document.getElementById('hint'); // get the hint element
+let textBlackscreen = document.getElementById('textBlackscreen');
+let secondPart = document.getElementById('secondPart');
+
+// Hide replies-section initially
+repliesSection.style.display = 'none';
+
+// Track confirmation state for rep1
+let rep1ClickedOnce = false;
+
+function typeWriterEffectBlackscreen(texts, element, callback) {
+    let idx = 0;
+    function showCurrentText() {
+        let text = texts[idx];
+        let i = 0;
+        element.innerHTML = "";
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 30);
+            }
+        }
+        type();
+    }
+
+    function onClick() {
+        if (idx < texts.length) {
+            showCurrentText();
+            // Wait for user click to proceed to next text
+            let proceed = function() {
+                idx++;
+                if (idx < texts.length) {
+                    showCurrentText();
+                } else {
+                    // Remove click listener and proceed
+                    blackscreen.removeEventListener('click', proceed);
+                    if (callback) callback();
+                }
+                // Only advance on click after text is fully shown
+                blackscreen.removeEventListener('click', proceed);
+                setTimeout(() => {
+                    blackscreen.addEventListener('click', proceed);
+                }, texts[Math.max(idx-1,0)].length * 30 + 50);
+            };
+            // Add click listener after text is fully shown
+            setTimeout(() => {
+                blackscreen.addEventListener('click', proceed);
+            }, text.length * 30 + 50);
+        }
+    }
+
+    // Start with first text
+    showCurrentText();
+    // Remove any previous click listeners
+    blackscreen.onclick = null;
+    // Add click listener for the first advance
+    let proceed = function() {
+        idx++;
+        if (idx < texts.length) {
+            showCurrentText();
+        } else {
+            blackscreen.removeEventListener('click', proceed);
+            if (callback) callback();
+        }
+        blackscreen.removeEventListener('click', proceed);
+        setTimeout(() => {
+            blackscreen.addEventListener('click', proceed);
+        }, texts[Math.max(idx-1,0)].length * 30 + 50);
+    };
+    setTimeout(() => {
+        blackscreen.addEventListener('click', proceed);
+    }, texts[0].length * 30 + 50);
+}
+
+rep1.onclick = function() {
+    if (!rep1ClickedOnce) {
+        hint.textContent = "Hint: If you run out of gold, you may also succumb to the wastes. Click your choice again to confirm.";
+        hint.style.display = "block";
+        hint.style.opacity = "1";
+        rep1ClickedOnce = true;
+    } else {
+        blackscreen.style.display = 'block';
+        hint.textContent = "";
+        hint.style.display = "none";
+        rep1ClickedOnce = false;
+
+        // Black screen texts
+        const blackscreenTexts = [
+            "...",
+            "...",
+            "Do you think the person you see in the reflection is also worthy of gold?"
+        ];
+        typeWriterEffectBlackscreen(blackscreenTexts, textBlackscreen, function() {
+            blackscreen.style.display = 'none';
+            textBlackscreen.innerHTML = "";
+            document.getElementById('firstPart').style.display = 'none'; // Hide firstPart
+            secondPart.style.display = 'flex'; // Show secondPart
+        });
+    }
+};
+
+rep2.onclick = function() {
+    document.getElementById('firstPart').style.display = 'none';
+    mainContent.style.display = 'flex';
+    mainContent.style.opacity = '1';
+    repliesSection.style.display = 'none';
+    curInd = -1;
+    box.innerHTML = "...";
+    hint.textContent = "";
+    hint.style.display = "none";
+    rep1ClickedOnce = false;
+};
+
+
 
 /*Hint button*/
 
@@ -136,5 +247,5 @@ hintButton.addEventListener("click", event=>{
     }
     
 });
-    
+
 
