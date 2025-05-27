@@ -36,8 +36,8 @@ x.addEventListener("click", event=>{
     clickSFX.play();
 });
 
-function formValidation(){
-    event.preventDefault();
+function formValidation(event){
+    if (event) event.preventDefault();
     let  username = document.getElementById('username');
     let pass = document.getElementById('password');
     let myForm = document.getElementById('userForm');
@@ -54,37 +54,40 @@ function formValidation(){
     
 
     let isError = false;
-    
-    // --- Move this block to the top so it always checks first ---
+
+
     if(errorCount >= 15) {
         window.location.href = 'page_2/triumph.html';
-        return true;
+        return false; 
     }
 
     if(username.value !== "09311496633"){
         userError.textContent = "Incorrect Username!";
         userError.style.opacity = '1';
         isError = true;
-        errorCount++;
     }
 
     if(pass.value !== "crssmy"){
         passError.textContent = "Incorrect Password!";
         passError.style.opacity = '1';
         isError = true;
-        errorCount++;
     }
 
-    if(isError){
+    if (isError) {
+        errorCount++;
         if(errorCount>=5){
             hint.style.opacity = '1';
             hint.textContent = "Hint: Its the username and password you always use!";
+        }
+        if(errorCount >= 15) {
+            window.location.href = 'page_2/triumph.html';
+            return false; 
         }
         return false;
     } 
     if (!isError){
         console.log("Validation successful, redirecting...");
         window.location.href = 'page_2/triumph.html';
-        return true;
+        return false;
     }
 }
