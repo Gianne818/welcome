@@ -36,31 +36,7 @@ startButton.addEventListener("click", function() {
     }, 500);
 });
 
-
-/*Going Inside Temple*/
-let goInside = document.getElementById('inside_button');
-let mirror = document.getElementById('firstPart');
-
-goInside.addEventListener("click", event=>{
-    mirror.style.display = 'flex';
-    mainContent.style.display = 'none';
-});
-
-
-
-/*First Part Texts*/
-let firstPartDialogue = document.getElementById('firstPartDialogueBox');
-let texts = [
-    "You see a dark dragon in front of you.",
-    "It is the manifestation of all who succumbed to the wastes.",
-    "What do you want to do?"
-    
-];
-
-let box = document.getElementById('firstPartDialogue');
-let curInd = -1;
-
-// General typewriter effect for any element
+/*Typewriter Effect*/
 let typeWriterTimeout = null;
 let isTyping = false;
 function typeWriterEffect(text, element, onDone) {
@@ -85,6 +61,29 @@ function typeWriterEffect(text, element, onDone) {
     type();
 }
 
+
+/*First Part*/
+let goInside = document.getElementById('inside_button');
+let firstPart = document.getElementById('firstPart');
+
+goInside.addEventListener("click", event=>{
+    firstPart.style.display = 'flex';
+    mainContent.style.display = 'none';
+});
+
+
+
+// First Part Dialogue
+let firstPartDialogue = document.getElementById('firstPartDialogueBox');
+let texts = [
+    "You see a dark dragon in front of you.",
+    "It is the manifestation of all who succumbed to the wastes.",
+    "What do you want to do?"
+    
+];
+
+let box = document.getElementById('firstPartDialogue');
+let curInd = -1;
 let hasEnteredSecondPart = false;
 
 if(!hasEnteredSecondPart){
@@ -112,19 +111,17 @@ if(!hasEnteredSecondPart){
 }
 
 
-
+// Replies Section First Part
 let repliesSection = document.querySelector('.replies-section');
 let rep1 = document.getElementById('rep1');
 let rep2 = document.getElementById('rep2');
 let blackscreen = document.getElementById('blackscreen');
-let hint = document.getElementById('hint'); // get the hint element
+let hint = document.getElementById('hint'); 
 let textBlackscreen = document.getElementById('textBlackscreen');
 let secondPart = document.getElementById('secondPart');
 
-// Hide replies-section initially
 repliesSection.style.display = 'none';
 
-// Track confirmation state for rep1
 let rep1ClickedOnce = false;
 
 rep1.onclick = function() {
@@ -139,7 +136,7 @@ rep1.onclick = function() {
         hint.style.display = "none";
         rep1ClickedOnce = false;
 
-        // Black screen texts
+        //First Part Black Screen Texts
         const blackscreenTexts = [
             "...",
             "...",
@@ -180,7 +177,7 @@ rep2.onclick = function() {
 
 
 
-/*Second Part Dialogues*/
+// Second Part Dialogue
 let secondPartDialogueBox = document.getElementById('secondPartDialogueBox');
 let secondBox = document.getElementById('secondPartDialogue');
 let secondRepliesSection = document.querySelector('.replies-section2');
@@ -197,32 +194,8 @@ let secondTexts = [
     "What do you want to do?"
 ];
 
-// Hide second replies-section initially
 secondRepliesSection.style.display = 'none';
 
-// Typewriter for second part
-function typeWriterEffectSecond(text, element) {
-    element.innerHTML = "";
-    let i = 0;
-    secondIsTyping = true;
-
-    function type() {
-        if (!secondIsTyping) {
-            element.innerHTML = text;
-            return;
-        }
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            secondTypeWriterTimeout = setTimeout(type, 30);
-        } else {
-            secondIsTyping = false;
-        }
-    }
-    type();
-}
-
-// Dialogue click for second part
 secondPartDialogueBox.addEventListener("click", () => {
     if (secondIsTyping) {
         secondIsTyping = false;
@@ -246,12 +219,11 @@ secondPartDialogueBox.addEventListener("click", () => {
     }
 });
 
-// --- Second Part Hint Logic ---
+// Second Part Black Screen Texts
 let secondHint = secondPart.querySelector('#hint');
 let secondRep1ClickedCount = 0;
 let secondRep2ClickedOnce = false;
 
-// Add this array for the blackscreen texts in secondPart
 const secondTextsBlackscreen = [
     "",
     "Hint: See? I told you!",
@@ -291,10 +263,8 @@ secondRep1.onclick = function() {
                 textBlackscreen.textContent = "";
                 secondRep1ClickedCount = 0;
                 blackscreen.onclick = null;
-                // Show wastelandTemple and hide others
                 if (typeof wastelandTemple !== "undefined" && wastelandTemple) {
                     wastelandTemple.style.display = 'flex';
-                    // Change body background to temple
                     document.body.style.backgroundImage = 'url("Assets_Wasteland/temple.png")';
                 }
                 if (mainContent) mainContent.style.display = 'none';
@@ -307,42 +277,33 @@ secondRep1.onclick = function() {
 };
 
 secondRep2.onclick = function() {
-    // Hide secondPart, show firstPart, hide krill1
     document.getElementById('secondPart').style.display = 'none';
     document.getElementById('firstPart').style.display = 'flex';
     if (krill1) krill1.style.display = 'none';
-    // Reset firstPart dialogue state
     curInd = 2;
     texts[2] = "";
     box.innerHTML = "";
     repliesSection.style.display = 'flex';
     rep1.textContent = "Proceed";
     rep2.textContent = "Go Back";
-    // Hide secondPart dialogue state
     secondCurInd = -1;
     secondBox.innerHTML = "...";
     secondRepliesSection.style.display = 'none';
-    // Hide second hint
     secondHint.textContent = "";
     secondHint.style.display = "none";
     secondRep2ClickedOnce = false;
     secondRep1ClickedCount = 0;
 
-    // Disable firstPartDialogueBox click event
     hasEnteredSecondPart = true;
 
-    // Set up firstPart rep1/rep2 handlers for this state
     let goBackClickedOnce = false;
     rep1.onclick = function() {
-        // Proceed to secondPart immediately
         document.getElementById('firstPart').style.display = 'none';
         secondPart.style.display = 'flex';
-        // Reset firstPart state
         curInd = -1;
         box.innerHTML = "...";
         repliesSection.style.display = 'none';
-        hasEnteredSecondPart = false; // Re-enable dialogue click for next time
-        // Restore original handlers after proceeding
+        hasEnteredSecondPart = false; 
         setupFirstPartHandlers();
     };
     rep2.onclick = function() {

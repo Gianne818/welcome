@@ -112,7 +112,7 @@ body {
 }
 
 
-/*Inside Temple*/
+/*First Part*/
 
 .firstPart {
     animation: grow .1s linear;
@@ -178,9 +178,8 @@ body {
     justify-content: center;
     gap: 20px;
     margin-top: 10px;
-    margin-bottom: 0; /* changed from 20px to 0 */
+    margin-bottom: 0;
     width: 100%;
-    /* Ensure it fits inside the dialogue box */
     position: static;
 }
 
@@ -268,7 +267,7 @@ body {
 
 #textBlackscreen {
     font-family: "Tagesschrift", system-ui;
-    font-size: clamp(14px, 3.5vw, 17px); /* smaller font size */
+    font-size: clamp(14px, 3.5vw, 17px); 
     color: #7A9D5B;
     text-shadow: 1px 1.5px #21371D; 
     text-align: center;
@@ -280,7 +279,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-/* Second part styles (same as .firstPart, dynamic) */
+/* Second Part*/
 .secondPart {
     animation: grow .1s linear;
     display: flex;
@@ -367,56 +366,7 @@ body {
 }
 
 
-/*Animations and Media*/
-@keyframes float {
-    0%, 100%{
-        transform: translateY(0);
-    }
-    50%{
-        transform: translateY(-4px);
-    }
-}
-
-
-
-@keyframes grow {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-
-@media (max-width: 767px) {
-    #soundOn{
-        height: 75px;
-    }
-
-    .firstPart,
-    .secondPart {
-        height: calc((70vw * 3) / 2); 
-        width: 70dvw;
-    }
-
-    #krill1, #krill2 {
-        height: min(60vw, 35vh);
-        max-width: 90vw;
-        max-height: 35vh;
-        top: 5vh;
-    }
-
-    .dialogueBox {
-        height: auto;
-    }
-
-    #submit_button {
-        padding-top: 8px;
-        height: 35px;
-    }
-}
-
+/*Inside Temple*/
 .wastelandTemple {
     transition: 300ms ease;
     display: flex;
@@ -519,4 +469,57 @@ body {
     margin: 18px auto 0 auto;
     color: #7A9D5B;
     text-shadow: 1px 1.5px #21371D; 
+}
+
+
+
+
+/*Animations and Media*/
+@keyframes float {
+    0%, 100%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-4px);
+    }
+}
+
+
+
+@keyframes grow {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+@media (max-width: 767px) {
+    #soundOn{
+        height: 75px;
+    }
+
+    .firstPart,
+    .secondPart {
+        height: calc((70vw * 3) / 2); 
+        width: 70dvw;
+    }
+
+    #krill1, #krill2 {
+        height: min(60vw, 35vh);
+        max-width: 90vw;
+        max-height: 35vh;
+        top: 5vh;
+    }
+
+    .dialogueBox {
+        height: auto;
+    }
+
+    #submit_button {
+        padding-top: 8px;
+        height: 35px;
+    }
 }

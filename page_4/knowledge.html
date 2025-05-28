@@ -5,11 +5,78 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Tagesschrift&display=swap" rel="stylesheet">
-        <title>Wasteland of Golden Sacrifices</title>
-        <link rel="stylesheet" href="wasteland.css">
+        <title>Sanctum of Knowledge</title>
+        <link rel="stylesheet" href="knowledge.css">
     </head>
     <body>
-        Congrats.
-        <script src="wasteland.js"></script>
+       <div id="startPageKnowledge" class="startTextKnowledge">
+            Current Progress: 
+            <p>&check;  Level 1: Dawn</p>
+            <p>&check;  Level 2: Daylight</p>
+            <p>&check;  Level 3: Concealing Forest</p>  
+            <p>&check;  Level 4: Hall of the Triumphant</p>
+            <p>&check;  Level 5: Wasteland of Golden Sacrifices</p>
+            <p id="knowledgeStart">
+                You have traversed the wastes and collected the treasure amongst them.
+                Now you stand before the Sanctum of Knowledge - the receptacle that holds the ingredients of wisdom.
+                Gather your knowledge, for with it, you shall receive the final piece.
+                
+            <p id="knowledgeContinue">If you are ready to continue, click the button below.</p>
+            <button id="continue_button">Continue</button>
+        </div>
+
+         <div class="mainContent" id="mainContent">
+            <img src="Assets_Knowledge/sound_on.png" id="soundOn">
+            <audio id="music" autoplay loop> <source src="Assets_Knowledge/Knowledge_OST.mp3"> </audio>
+            <audio id="click_sfx"> <source src="Assets_Knowledge/click_sfx.mp3"> </audio>
+            <p id="textIntro">LOOK FOR THE HIGHEST KNOWLEDGE.</p>
+            <button id="meditate_button">MEDITATE</button>
+        </div>
+
+        <div class="library" id="library">
+            <div id="proceedButtonContainer">
+            </div>
+            <div class="library-content-row">
+                <div class="library-content-col">
+                    <img src="Assets_Knowledge/memory_front.png" id="memoryFront">
+                    <span class="memory-shadow"></span>
+                </div>
+                <div class="library-content-col">
+                    <img src="Assets_Knowledge/memory_side.png" id="memorySide">
+                    <span class="memory-shadow"></span>
+                </div>
+            </div>
+            <div class="dialogueBox" id="dialogueBox">
+                <p id="dialogue">Light up both memory cubes to proceed.</p>
+            </div>
+        </div>
+
+        <div class="memoryFrontKnowledge" id="memoryFrontKnowledge">
+            <p id="memoryFrontText">Enter the Knowledge of the Triumphant</p>
+            <input type="text" id="memoryInputTriumph" placeholder="Enter the knowledge...">
+            <button id="submitMemoryFront">Submit</button>
+            <p id="hintTriumph"></p>
+        </div>
+
+        <div class="memorySideKnowledge" id="memorySideKnowledge">
+            <p id="memorySideText">Enter the Knowledge of the Wastes</p>
+            <input type="text" id="memoryInputWastes" placeholder="Enter the knowledge...">
+            <button id="submitMemorySide">Submit</button>
+            <p id="hintWastes"></p>
+        </div>
+            
+        <div class="blackScreen" id="blackScreen">
+            <img src="Assets_Knowledge/memory_front.png" id="finalMemoryKnowledge">
+            <p id="finalKnowledgeText">...</p>     
+            <div class="finalKnowledge" style="display:none;">
+                <p id="finalKnowledgePrompt">The final knowledge is one consisting of the knowledge of the wastes,
+                    but without the knowledge of the triumphant. Enter the final knowledge to forge the finest of wisdoms.
+                </p>
+                <input type="text" id="finalKnowledgeInput" placeholder="Enter the final knowledge...">
+                <button id="submitFinalKnowledge">Submit</button>
+            </div>
+        </div>
+            
+        <script src="knowledge.js"></script>
     </body>
-</html> 
+</html>
