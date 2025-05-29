@@ -239,7 +239,7 @@ body {
     }
 
     .message {
-        width: calc((80vh * 1) / 1.57); 
+        width: calc((80dvh * 1) / 1.57); 
         height: 80dvh;
         background-image: url(Assets_Orbit/frame_portrait.png);
     }
