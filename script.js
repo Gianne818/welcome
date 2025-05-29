@@ -79,10 +79,6 @@ function formValidation(event){
             hint.style.opacity = '1';
             hint.textContent = "Hint: Its the username and password you always use!";
         }
-        if(errorCount >= 15) {
-            window.location.href = 'page_2/triumph.html';
-            return false; 
-        }
         return false;
     } 
     if (!isError){
