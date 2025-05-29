@@ -55,12 +55,6 @@ function formValidation(event){
 
     let isError = false;
 
-
-    if(errorCount >= 15) {
-        window.location.href = 'page_2/triumph.html';
-        return false; 
-    }
-
     if(username.value !== "09311496633"){
         userError.textContent = "Incorrect Username!";
         userError.style.opacity = '1';
