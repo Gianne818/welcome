@@ -70,7 +70,7 @@ body {
     scale: 1.05;
 }
 
-#submit_identity, #meditate_button {
+#submit_identity, #read_button {
     font-family: "Tagesschrift", system-ui;
     transition: 300ms ease;
     color: #0C274A;
@@ -84,17 +84,21 @@ body {
     
 }
 
-#submit_identity:hover, #meditate_button:hover {
+#submit_identity:hover, #read_button:hover {
     background-color: #0C274A;
     color: #CBAB60;
-    scale: 1.3;
+    scale: 1.2;
+}
+
+#read_button {
+    width: 80px;
 }
 
 /*Main Page*/
 .mainContent {
     transition: 300ms ease;
     display: flex;
-    color: #99B3C2;
+    color: #CBAB60;
     text-shadow: 1px 1.5px  #0C274A;
     flex-direction: column;
     justify-content: center;
@@ -121,9 +125,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: clamp(14px, 3.0vw, 20px);
 
-    color: #99B3C2;
-    text-shadow: 1px 1.5px  #293158;
+    color: #CBAB60;
+    text-shadow: 1px 1.5px  #0C274A;
     height: calc((70dvw * 1) / 1.6); 
     width: 70dvw;
 
@@ -135,6 +140,64 @@ body {
     display: none;
 }
 
+/* Navigation buttons for message */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#prev_button {
+    left:80px;
+}
+
+#next_button {
+    right: 60px;
+}
+
+.nav-btn img {
+    transition: ease 0.3s;
+    width: 100%;
+    height: auto;
+    max-width: 60px;
+    max-height: 60px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.nav-btn:hover img {
+    filter: brightness(1.2);
+    scale: 1.05;
+}
+
+
+#textMessage {
+    margin-left: 150px;
+    margin-right: 150px;
+    transition: opacity 0.3s;
+    opacity: 1;
+    text-align: justify;
+}
+
+.fade-in {
+    opacity: 1 !important;
+    transition: opacity 0.3s;
+}
+
+.fade-out {
+    opacity: 0 !important;
+    transition: opacity 0.3s;
+}
 
 /*Animations and Media*/
 @keyframes float {
@@ -176,21 +239,26 @@ body {
     }
 
     .message {
-        width: calc((100vw * 1) / 1.6); 
-        height: 100dvw;
+        width: calc((80vh * 1) / 1.6); 
+        height: 80dvh;
         background-image: url(Assets_Orbit/frame_portrait.png);
     }
     
-    #memoryFront, #memorySide {
-        height: 100px;
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-top: 20px;
+    #prev_button {
+        left:5px;
+        width: 45px;
+        height: 45px;
     }
 
-    .memory-shadow{
-        padding-top: 20px;
-        scale: 0.5;
+    #next_button {
+        right: 5px;
+        width: 45px;
+        height: 45px;
+    }
+
+    #textMessage {
+        margin-left: 48px;
+        margin-right: 48px;
     }
 
 }
