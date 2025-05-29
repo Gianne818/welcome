@@ -233,13 +233,13 @@ body {
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 600px) {
     #soundOn{
         height: 75px;
     }
 
     .message {
-        width: calc((80vh * 1) / 1.6); 
+        width: calc((80vh * 1) / 1.57); 
         height: 80dvh;
         background-image: url(Assets_Orbit/frame_portrait.png);
     }
