@@ -248,7 +248,7 @@ if (submitFinalKnowledge && finalKnowledgeInput) {
     submitFinalKnowledge.onclick = function() {
         const val = finalKnowledgeInput.value.trim().toLowerCase();
         if (val === "3" || val === "three") {
-            window.location.href = "hbd.html";
+            window.location.href = "../page_5/orbit.html"; 
         } else {
             typeWriterEffectFinal("Incorrect!", finalKnowledgeText);
         }

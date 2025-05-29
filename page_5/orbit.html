@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Tagesschrift&display=swap" rel="stylesheet">
+        <title>Orbit of Rebirth</title>
+        <link rel="stylesheet" href="orbit.css">
+    </head>
+    <body>
+       <div id="orbitStartPage" class="orbitStartPage">
+            Current Progress: 
+            <p>&check;  Level 1: Dawn</p>
+            <p>&check;  Level 2: Daylight</p>
+                <p>&check;  Level 3: Concealing Forest</p>  
+                <p>&check;  Level 4: Hall of the Triumphant</p>
+            <p>&check;  Level 5: Wasteland of Golden Sacrifices</p>
+            <p>&check;  Level 6: Sanctum of Knowledge</p>
+            <p id="orbitStart">
+                You are now the bearer of the finest of wisdoms. In this orbit of spirits and rebirth,
+                you shall use it as you please.
+            <p id="orbitContinue">Prove your identity</p>
+            <input type="text" id="identityProof" placeholder="Enter my favorite flower...">
+            <button id="submit_identity">Submit</button>
+        </div>
+
+         <div class="mainContent" id="mainContent">
+            <audio id="music" autoplay loop> <source src="Assets_Orbit/Nobya.m4a"> </audio>
+            <audio id="click_sfx"> <source src="Assets_Knowledge/click_sfx.mp3"> </audio>
+            <p id="textIntro">HAPPY 19th BIRTHDAY!!!!!!</p>
+            <button id="read_button">Read</button>
+        </div>
+
+        <div class="message" id="message">
+            <p id="textMessage">some text</p>
+        </div>
+
+    
+            
+        <script src="orbit.js"></script>
+    </body>
+</html>

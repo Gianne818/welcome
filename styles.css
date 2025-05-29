@@ -45,6 +45,10 @@ html, body {
     font-size: 25px;
 }
 
+#musicInfo {
+    font-size: 12px;
+}
+
 #intro_text {
     padding-right: 30px;
     padding-left: 30px;
